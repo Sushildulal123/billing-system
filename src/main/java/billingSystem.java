@@ -1,4 +1,5 @@
-// Shopping bill Calculator
+// console-based bill calculator
+
 import java.util.*;
 import java.text.SimpleDateFormat;
 class Products {
