@@ -38,14 +38,14 @@ class Products {
 
     // Layout
     public static void displayFormat() {
-        System.out.format("--------------------------------------------------------------");
-        System.out.print("\nProduct ID \t\tName\t\tQuantity\t\tRate\t\t\t\tTotal Amount\n");
-        System.out.format("--------------------------------------------------------------");
+        System.out.format("----------------------------------------------------------------------------");
+        System.out.print("\nProd-ID \tName \tQuantity \tRate \t\t\t\t\tTotal Amount\n");
+        System.out.format("----------------------------------------------------------------------------");
     }
 
     // Display results
     public void display() {
-        System.out.format("%-9s %-9s %5d %9.2f %14.2f\n", id, productsName, quantity, price, totalPrice);
+        System.out.format("\n%-9s %-9s %5d %9.2f \t\t\t\t %14.2f\n", id, productsName, quantity, price, totalPrice);
     }
 }
 public class billingSystem {
@@ -58,11 +58,11 @@ public class billingSystem {
         double price = 0.0;
         double totalPrice = 0.0;
         double overallPrice = 0.0;
-        double cgst, sgst, subtotal = 0.0, discount = 0.0;
+        double vatChrg, servChrg, subtotal = 0.0, discount = 0.0;
         char selection = '\0';
-        System.out.println("\t\t\t----------Invoice----------");
-        System.out.println("\t\t\t " + " " + "Sirius Supermarket");
-        System.out.println("\t\t\t369 Andromeda Galaxy");
+        System.out.println("\t----------Invoice----------");
+        System.out.println("\t " + " " + "Sirius Supermarket");
+        System.out.println("\t 369 Andromeda Galaxy");
 
         //Date & Time Format
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
@@ -71,10 +71,10 @@ public class billingSystem {
         String[] days = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
         // Date & time Output
-        System.out.println("\n Date:" + formatter.format(date) + " " + days[calendar.get(Calendar.DAY_OF_WEEK) - 1]);
+        System.out.println("\nDate: " + formatter.format(date) + " " + days[calendar.get(Calendar.DAY_OF_WEEK) - 1]);
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("\n Name of the Customer: ");
+        System.out.println("\nName of the Customer: ");
         String customerName = scan.nextLine();
 
         // Scanner class Object
@@ -83,18 +83,18 @@ public class billingSystem {
         char choice;
         do {
             // Read input
-            System.out.println("Enter the product details: ");
+            System.out.println("\nEnter the product details: ");
 
-            System.out.println("Product ID: ");
+            System.out.println("\nProduct ID: ");
             id = scan.nextLine();
 
-            System.out.println("Product Name: ");
+            System.out.println("\nProduct Name: ");
             productsName = scan.nextLine();
 
-            System.out.println("Quantity: ");
+            System.out.println("\nQuantity: ");
             quantity = scan.nextInt();
 
-            System.out.println("Price (per unit): ");
+            System.out.println("\nPrice (per unit): ");
             price = scan.nextDouble();
 
             // Calculate total Price for the specific product
@@ -124,26 +124,26 @@ public class billingSystem {
         }
 
         // Price calculation
-        System.out.println("\n\t\t\t\t\t\tTotal Amount (Euro €)" + overallPrice);
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t      Total Amount: " + overallPrice + " €");
 
         // Discount calculation
-        discount = overallPrice*2.5/100;
-        System.out.println("\n\t\t\t\t\t\t Discount (Euro €)" + discount);
+        discount = overallPrice * 2.5/100;
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t          Discount: " + discount + " €");
 
         // Total Price after discount
         subtotal = overallPrice - discount;
-        System.out.println("\n\t\t\t\t Subtotal" + subtotal);
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t          Subtotal: " + subtotal + " €");
 
-        // Tax calculation
-        sgst = overallPrice * 16/100;
-        System.out.println("\n\t\t\t\t\t\t SGST (%)" + sgst);
+        // Service charge and VAT calculation
+        servChrg = overallPrice * 1.5/100;
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t     Service(1.5%): " + servChrg + " €");
 
-        cgst = overallPrice * 13/100;
-        System.out.println("\n\t\t\t\t\t\t CGST (%)" + cgst);
+        vatChrg = overallPrice * 19/100;
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t   VAT charge(19%): " + vatChrg + " €");
 
         // Total amount to be paid
-        System.out.println("\n\t\t\t\t\t\t Invoice Total" + (subtotal+cgst+sgst));
-        System.out.println("\t\t\t\t\t\t-----Thank you for visiting us!!!-----");
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t     Invoice Total: " + (subtotal + servChrg + vatChrg) + " €");
+        System.out.println("\n\t\t\t\t-----Thank you for visiting us!!!-----");
 
         // close scanner
         scan.close();
