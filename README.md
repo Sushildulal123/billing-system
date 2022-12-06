@@ -1,3 +1,3 @@
 # billing-system
 
-Basic console-based billing calculator in Java.
+billing calculator in Java.
